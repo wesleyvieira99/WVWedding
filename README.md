@@ -4,7 +4,7 @@ Site do casamento de Wesley e Vinícius, em português, para os dias **14 e 15 d
 
 Domínio definido: **https://casalvw.com/**
 
-Hospedagem: **GoDaddy**. Repositório de origem: [wesleyvieira99/WVWedding](https://github.com/wesleyvieira99/WVWedding). HTTPS validado para `casalvw.com` e `www.casalvw.com`; ambos responderam HTTP 200 com validação normal do certificado. Os arquivos principais foram publicados, e o envio do formulário pela origem HTTPS teve recebimento confirmado no Gmail. O redirecionamento definido em `.htaccess` deve ser validado após sua implantação.
+Hospedagem: **GoDaddy**. Repositório de origem: [wesleyvieira99/WVWedding](https://github.com/wesleyvieira99/WVWedding). HTTPS validado para `casalvw.com` e `www.casalvw.com`. Os arquivos foram publicados, os redirecionamentos foram verificados e o envio do formulário pela origem HTTPS teve recebimento confirmado no Gmail.
 
 ## Executar localmente
 
@@ -45,7 +45,9 @@ O domínio escolhido é **https://casalvw.com/**. O GitHub mantém o código-fon
 
 O pacote de entrega `WVWedding-site.zip` contém uma pasta `site/` com os arquivos públicos e um `LEIA-ME-PUBLICACAO.txt` fora dela. Depois de identificar o serviço de hospedagem associado ao domínio na GoDaddy, publique **o conteúdo de `site/`** no diretório que serve a raiz desse domínio. O método e o diretório exatos dependem do plano contratado e devem ser confirmados no painel. O arquivo `index.html` deve responder na raiz de `https://casalvw.com/`, com `assets/` ao lado. Não publique a pasta `.git`, documentos de reserva, arquivos de trabalho ou instruções internas.
 
-Inclua o arquivo oculto `.htaccess` na raiz pública. Ele prepara redirecionamento 301 de HTTP e de `www` para `https://casalvw.com/`, preservando caminho e parâmetros de consulta. A rota `/.well-known/acme-challenge/` fica fora desse redirecionamento para renovação manual HTTP-01. Não há HSTS. Na criação desse arquivo, não havia `.htaccess` anterior no repositório, e a listagem de arquivos ocultos do `public_html` também não mostrava um existente. Confira os redirecionamentos após o upload; esta preparação não comprova sua implantação.
+Inclua o arquivo oculto `.htaccess` na raiz pública. Ele redireciona HTTP e `www` com status 301 para `https://casalvw.com/`, preservando caminho e parâmetros de consulta. A rota `/.well-known/acme-challenge/` fica fora desse redirecionamento para renovação manual HTTP-01. Não há HSTS. Na criação desse arquivo, não havia `.htaccess` anterior no repositório, e a listagem de arquivos ocultos do `public_html` também não mostrava um existente.
+
+**Implantação verificada:** HTTP no domínio raiz, HTTP em `www` com caminho/parâmetros e HTTPS em `www` redirecionaram corretamente; a origem HTTPS canônica respondeu 200 e o desafio ACME permaneceu acessível por HTTP com status 200. CSS, JavaScript e configuração publicados corresponderam exatamente aos arquivos locais. O HTML publicado correspondeu ao local, com a única diferença de um script de rastreamento inserido pela própria GoDaddy antes do fechamento do documento.
 
 Os metadados canonical/Open Graph e o calendário usam o domínio definido. Todos os recursos locais mantêm caminhos relativos. Ao mudar o domínio, atualize `publicUrl` em `config.js`, canonical/Open Graph em `index.html` e a URL no calendário.
 
