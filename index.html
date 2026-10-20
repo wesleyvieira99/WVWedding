@@ -29,14 +29,15 @@
       }, 6000);
     }
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261020-mix">
+  <link rel="stylesheet" href="styles.css?v=20261020-audio">
+  <link rel="stylesheet" href="music.css?v=20261020-audio">
   <link rel="stylesheet" href="portal.css?v=20261020-motion">
   <link rel="stylesheet" href="nature.css?v=20261020-motion">
   <script src="portal.js?v=20261020-motion" defer></script>
   <script src="config.js" defer></script>
   <script src="script.js?v=20261020-mix" defer></script>
-  <script src="music-tracks.js?v=20261020-mix" defer></script>
-  <script src="music.js?v=20261020-mix" defer></script>
+  <script src="music-tracks.js?v=20261020-audio" defer></script>
+  <script src="music.js?v=20261020-audio" defer></script>
   <script src="nature.js?v=20261020-motion" defer></script>
 </head>
 <body>
@@ -239,18 +240,18 @@
   </main>
 
   <footer class="site-footer"><a class="wordmark" href="#inicio" aria-label="Voltar ao início">W<span>&</span>V</a><p>Feito de amor. Para celebrar com você.</p><span>WVWedding · 2026</span></footer>
-  <aside class="music-dock" aria-label="Trilha sonora" hidden>
-    <button class="music-trigger glass" id="music-trigger" type="button" aria-controls="music-panel" aria-expanded="false" aria-haspopup="dialog" aria-label="Abrir nossa trilha sonora"><span class="music-trigger-icon"><svg class="icon" aria-hidden="true"><use href="#i-music"/></svg></span><span class="music-trigger-copy">Dar play no amor<small>Uma trilha para o nosso encontro</small></span><svg class="icon music-trigger-arrow" aria-hidden="true"><use href="#i-external"/></svg></button>
+  <aside class="music-bar" id="music-bar" aria-label="Nossa trilha sonora" data-state="paused" hidden>
+    <svg class="music-sprig" aria-hidden="true" viewBox="0 0 38 46" fill="none"><path d="M9 42C14 28 24 19 29 4"/><path d="M13 32C3 29 4 19 7 15c7 3 10 10 6 17ZM19 23C19 13 25 10 31 10c1 7-4 12-12 13ZM24 15C16 13 16 6 19 2c5 2 8 7 5 13ZM11 37C19 29 25 30 29 33c-4 7-10 8-18 4Z"/></svg>
+    <div class="music-copy"><p id="music-track-title">Nossa trilha</p><span id="music-track-artist">Um som para estar junto</span></div>
+    <span class="music-wave" id="music-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <div class="music-controls">
+      <button id="music-previous" type="button" aria-label="Música anterior" title="Música anterior"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 5v14M18 5l-10 7 10 7Z"/></svg></button>
+      <button id="music-toggle" type="button" aria-label="Reproduzir música" aria-pressed="false" data-state="paused"><svg class="icon music-play-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg><svg class="icon music-pause-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 6v12M16 6v12"/></svg></button>
+      <button id="music-next" type="button" aria-label="Próxima música" title="Próxima música"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 5v14M6 5l10 7-10 7Z"/></svg></button>
+    </div>
+    <div class="music-progress" id="music-progress" role="progressbar" aria-label="Progresso da música" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="music-progress-fill"></span></div>
+    <span class="music-sr-only" id="music-status" role="status" aria-live="polite"></span>
   </aside>
-  <dialog class="music-panel glass" id="music-panel" aria-labelledby="music-title" aria-describedby="music-description" aria-modal="false">
-    <button class="music-close" type="button" aria-label="Fechar e parar a música"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
-    <div class="music-panel-heading"><span class="music-emblem" aria-hidden="true"><svg class="icon"><use href="#i-music"/></svg></span><div><p class="eyebrow">Uma trilha para estar junto</p><h2 id="music-title">Nosso <em>som.</em></h2></div></div>
-    <p id="music-description">Dê o play. O resto, deixa tocar.</p>
-    <div class="music-album-caption"><span>Álbum</span><p id="music-album">Nossa trilha</p></div>
-    <div class="music-embed" id="music-embed"></div>
-    <div class="music-now"><span class="music-wave" id="music-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span id="music-playback-status" role="status" aria-live="polite">Pronto para o play</span><button id="music-minimize" type="button" aria-label="Recolher painel">Recolher <span aria-hidden="true">↓</span></button></div>
-    <div class="music-panel-footer"><span>Se tocar só uma prévia, abra no Spotify e entre na sua conta para continuar ouvindo.</span><a id="spotify-link" href="https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D" target="_blank" rel="noopener noreferrer">Continuar no Spotify <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
-  </dialog>
   <dialog class="photo-dialog" id="photo-dialog" aria-label="Fotos de Wesley e Vinícius"><button class="dialog-close" type="button" aria-label="Fechar foto"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><figure><img src="assets/casal-1.jpg" alt=""><figcaption></figcaption></figure><div class="photo-navigation"><button class="photo-previous" type="button" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><span id="photo-position" aria-live="polite">1 de 3</span><button class="photo-next" type="button" aria-label="Próxima foto"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></dialog>
 </body>
 </html>

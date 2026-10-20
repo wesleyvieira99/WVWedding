@@ -23,11 +23,12 @@ Acesse `http://localhost:4173`. Não abra por `file://`: envio de formulário e 
 - `script.js`: menu, controle de movimento, contagem de dias no fuso de São Paulo, galeria, cópia de endereço e envio de recados.
 - `portal.css` e `portal.js`: abertura de até cinco segundos com monograma animado e fechamento imediato ao iniciar uma interação.
 - `nature.css` e `nature.js`: flores nas margens e folhagens com movimento leve ligado à rolagem.
-- `music-tracks.js`: catálogo de 38 músicas com metadados públicos do Spotify, sem áudio ou imagens.
-- `music.js`: fila embaralhada, integração com a IFrame API oficial do Spotify e estados de reprodução confirmados pelo player.
+- `music-tracks.js`: catálogo das nove faixas fornecidas pelo casal, com título, artista e caminho relativo do MP3.
+- `music.js`: player próprio com áudio HTML nativo, controles de reprodução, volume e transições suaves.
+- `music.css`: barra musical fixa, estados dos controles, progresso, apresentação mobile e movimento reduzido.
 - `config.js`: domínio público, data, endereço, destinatário de e-mail e link do convite.
 - `.htaccess`: redirecionamento para HTTPS e domínio canônico na hospedagem Apache/cPanel, preservando a rota de renovação do certificado.
-- `assets/`: fotografias, fontes locais com suas licenças, favicon e arquivo de calendário.
+- `assets/`: fotografias, fontes locais com suas licenças, favicon e arquivo de calendário; `assets/audio/` contém os nove MP3 da trilha.
 
 O convite final foi fornecido e aprovado pelo casal. A arte está em `assets/convite-wesley-vinicius.png`, no formato PNG, com dimensões de **1080 × 1920 px**. O arquivo foi copiado integralmente, sem edição visual ou recompressão. `invitationUrl` aponta para essa imagem, e o link **Guarde o nosso convite** permite baixá-la como `Convite-Wesley-e-Vinicius-FINAL.png`, inclusive sem JavaScript. O convite é uma peça gráfica; as fotografias originais do casal usadas no site continuam separadas.
 
@@ -67,7 +68,7 @@ As imagens da propriedade são do [anúncio da chácara no Airbnb](https://www.a
 
 A estimativa **2h a 2h30 de São Paulo** é deliberadamente aproximada. Referências consultadas: [Distância Entre](https://www.distanciaentre.com.br/sao-paulo/sarapui) e [Rota Mapas](https://www.rotamapas.com.br/distancia-entre-sao-paulo-e-sarapui). O ponto de partida e o trânsito alteram o percurso; os botões Google Maps e Waze abrem a rota atual para o endereço da comemoração.
 
-Fontes Cormorant Garamond e Manrope, obtidas do Google Fonts e servidas localmente. Licenças SIL Open Font License incluídas em `assets/fonts/`. Não há requisições a Google Fonts, cookies próprios, mapas incorporados nem scripts próprios de publicidade. O Spotify só é carregado quando o visitante abre o painel musical; o player externo tem sua própria política de privacidade e comportamento de sessão.
+Fontes Cormorant Garamond e Manrope, obtidas do Google Fonts e servidas localmente. Licenças SIL Open Font License incluídas em `assets/fonts/`. Não há requisições a Google Fonts, cookies próprios, mapas incorporados nem scripts próprios de publicidade. A trilha usa arquivos MP3 servidos pela mesma hospedagem e o recurso de áudio do navegador, sem player musical externo, API de terceiros, credenciais ou autenticação.
 
 O site usa `noindex, nofollow` para desencorajar indexação por buscadores. Isso não cria uma barreira de acesso: quem tiver a URL pode abrir a página pública.
 
@@ -84,7 +85,7 @@ node --check music-tracks.js
 node --check music.js
 ```
 
-Pontos de revisão após novas publicações: visual em desktop e celular; navegação por teclado; menu mobile; abertura/fechamento de fotos; calendário; Google Maps/Waze; abertura do convite final; HTTPS, redirecionamentos e envio de recados. A ativação da origem HTTPS e a chegada de um recado enviado pelo navegador foram confirmadas em 20/10/2026 às 03:34:12 UTC. O botão de envio nasce desabilitado no HTML e só é habilitado após a instalação do handler JavaScript. O formulário declara `method="post"`, para evitar dados pessoais em query strings se o JavaScript não carregar.
+Pontos de revisão após novas publicações: visual em desktop e celular; navegação por teclado; menu mobile; abertura/fechamento de fotos; calendário; Google Maps/Waze; abertura do convite final; HTTPS, redirecionamentos e envio de recados. Na trilha, confira carregamento dos MP3, play após bloqueio de reprodução automática, pausa/continuação, cliques rápidos em anterior/próxima, término real da faixa, volume e fades. A ativação da origem HTTPS e a chegada de um recado enviado pelo navegador foram confirmadas em 20/10/2026 às 03:34:12 UTC. O botão de envio nasce desabilitado no HTML e só é habilitado após a instalação do handler JavaScript. O formulário declara `method="post"`, para evitar dados pessoais em query strings se o JavaScript não carregar.
 
 ## Trilha e interação
 
@@ -92,13 +93,17 @@ A abertura dura até **cinco segundos**: um único **V** aparece, e seu traço s
 
 A luz do hero avança automaticamente até o entardecer em um ciclo suave de **28 segundos**: cerca de 10 segundos de evolução, 7 segundos de permanência e um retorno de 11 segundos. Não há seletor nem ação necessária para iniciar. A legenda explica a interpretação artística da luz; textos e controles mantêm contraste ao longo da transição. O efeito usa somente opacidade CSS sobre as duas imagens existentes, sem novos downloads ou temporizadores JavaScript.
 
-O botão **Dar play no amor** abre um único player com **38 músicas misturadas**, sem seletores de artistas. O catálogo reúne as 11 faixas de [ANAVITÓRIA](https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D), as 14 de [Memórias Póstumas · Jão](https://open.spotify.com/album/37oi5fAM46AtRr3bXNj8M3) e os primeiros 14 itens de [This Is TIAGO IORC](https://open.spotify.com/playlist/37i9dQZF1DZ06evO2w94yY) na consulta de 20/10/2026. “Trevo (Tu)”, presente em duas fontes, aparece uma única vez. A ordem é embaralhada e alterna os grupos de artistas sempre que possível, inclusive ao renovar a fila.
+A trilha fica em uma **barra própria fixa de 60 px no desktop e 56 px no celular**, com título e artista da música, controles de anterior/próxima e pausa/continuação e indicação de progresso. Ela usa um único elemento de áudio HTML e **nove MP3 fornecidos pelo casal**, nesta ordem: “N” — Nando Reis e ANAVITÓRIA; “Oceano” — Djavan; “Tua” — ANAVITÓRIA; “Me Espera” — Sandy e Tiago Iorc; “Tangerina (Ao Vivo)” — Tiago Iorc e DUDA BEAT; “Aurora” — Jão; “Trevo (Tu)” — ANAVITÓRIA e Tiago Iorc; “Catedral” — Jão; “Agora Eu Quero Ir” — ANAVITÓRIA.
 
-A capa, o título, o artista e os controles de play/pausa são apresentados pelo player nativo do Spotify; o site informa também o álbum da faixa. A integração usa a IFrame API oficial, carregada somente quando o painel é aberto. O visitante inicia a reprodução, e a fila solicita a próxima música somente após observar progresso até o fim informado pelo Spotify. Pausas manuais e o simples passar do tempo não avançam a fila. O indicador visual acompanha o progresso reportado e para em pausas, carregamento ou ausência de novas atualizações. Não há reprodução automática ao abrir o site, arquivos de áudio hospedados nem capas copiadas para o repositório.
+Depois do carregamento da página e do fim da abertura, o player tenta iniciar a trilha conforme a política de reprodução do navegador. Se a reprodução automática for bloqueada, o visitante pode iniciá-la pelo botão de play. O volume é definido em **18%**. Os fades de entrada e de fim duram aproximadamente **dois segundos**; ao escolher anterior/próxima durante a reprodução, a saída dura **600 ms** antes de carregar a nova música. As transições são sequenciais, sem sobrepor duas músicas.
 
-O Spotify controla a reprodução e a duração disponível em cada contexto, conforme a sessão, o navegador e a disponibilidade do conteúdo. O site não promete reprodução completa no player incorporado, e uma assinatura Premium não é apresentada como garantia disso. Se tocar apenas uma prévia, o rodapé orienta usar **Continuar no Spotify** para abrir a faixa no serviço e entrar na conta. A permissão `encrypted-media` permanece no iframe; ela permite os recursos do player, mas não elimina as restrições definidas pelo Spotify. Se a API falhar, o site apresenta o embed oficial da faixa e informa que a sequência automática está indisponível.
+Pausar preserva a posição para continuar e cancela uma troca ainda em andamento. Anterior/próxima mantém a trilha pausada quando essa foi a escolha do visitante. A troca automática depende do evento real de término da faixa, sem usar um temporizador para presumir que a música acabou. O indicador de reprodução acompanha os eventos do áudio. A trilha pode continuar com a aba em segundo plano; sair da página pausa o áudio, e voltar pelo histórico não o retoma automaticamente.
 
-**Recolher** conserva o iframe para a trilha acompanhar a navegação; o X e Escape removem o iframe e encerram a reprodução. Ao reabrir depois de fechar, uma nova instância é criada, e callbacks antigos não podem alterar o player atual. O painel recolhe ao entrar no formulário; o dock se reduz na seção de recados e se oculta enquanto o visitante digita em campos, evitando interferir no formulário. As mensagens do formulário não são repassadas ao Spotify.
+Após uma interação, o player pode usar a Web Audio API para controlar o volume por ganho; o volume nativo é a alternativa quando esse recurso não está disponível. Em navegadores que não permitam nenhum dos controles, o volume depende do aparelho e os fades podem não ser aplicados.
+
+Os arquivos permanecem na própria hospedagem, em `assets/audio/`. Não há vídeos incorporados, anúncios de um serviço musical, autenticação ou dependência de um catálogo externo. O funcionamento depende do carregamento dos MP3 e das permissões de áudio do navegador; falhas de rede podem interromper a reprodução.
+
+Em **20/10/2026**, os nove arquivos especificados pelo casal foram copiados integralmente de Downloads para `assets/audio/`, sem transcodificação. A igualdade de cada cópia foi conferida por SHA-256. O total é **82.868.953 bytes** (aproximadamente 79 MiB). Os nove MP3 também passaram pela leitura de formato e duração com `afinfo`, e a hospedagem respondeu com tipo `audio/mpeg` e tamanho esperado para cada arquivo. No navegador, foram confirmados play/pausa, navegação manual e a passagem de “Oceano” para “Tua”: o ganho desceu até aproximadamente zero no final e voltou a 18% em dois segundos. Não foi feita a audição integral das nove músicas. O harness de estados cobre bloqueio de autoplay, pausa durante troca, cliques rápidos, navegação circular e término real sem avanço duplicado.
 
 A página adiciona entradas graduais, pequenos pontos de luz e um brilho sutil de entardecer, além de reflexo suave sobre o vidro em dispositivos com mouse. Um pequeno grupo de aves em SVG atravessa somente o céu do hero: três no desktop e duas no celular, sem imagens adicionais ou bibliotecas de animação. A paisagem deixa de animar quando sai da tela, e as animações CSS pausam quando a aba fica em segundo plano.
 
