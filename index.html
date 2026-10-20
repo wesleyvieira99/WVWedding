@@ -69,6 +69,12 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="sky-birds" aria-hidden="true">
+        <span class="bird-flight"><svg viewBox="0 0 48 24"><path class="bird-wing" d="M24 17C17 8 8 6 2 9c10 0 15 7 22 8C31 8 40 6 46 9c-10 0-15 7-22 8Z"/></svg></span>
+        <span class="bird-flight"><svg viewBox="0 0 48 24"><path class="bird-wing" d="M24 17C17 8 8 6 2 9c10 0 15 7 22 8C31 8 40 6 46 9c-10 0-15 7-22 8Z"/></svg></span>
+        <span class="bird-flight"><svg viewBox="0 0 48 24"><path class="bird-wing" d="M24 17C17 8 8 6 2 9c10 0 15 7 22 8C31 8 40 6 46 9c-10 0-15 7-22 8Z"/></svg></span>
+      </div>
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" hidden><span class="motion-toggle-mark" aria-hidden="true"></span><span>Pausar animações</span></button>
       <div class="hero-content">
         <p class="eyebrow light hero-eyebrow"><span></span> O nosso próximo capítulo <span></span></p>
         <h1 id="hero-title">Wesley <em>&</em> Vinícius</h1>
@@ -89,6 +95,7 @@
 
     <section class="invitation section-pad" id="convite" aria-labelledby="invitation-title">
       <div class="invitation-heading reveal">
+        <svg class="invitation-branches line-art" viewBox="0 0 280 300" fill="none" aria-hidden="true"><g><path pathLength="1" d="M86 265C37 227 25 176 39 119M56 235c-26-3-38-16-38-30 20 3 31 13 38 30Zm-15-32c-25-8-33-24-30-37 19 7 27 19 30 37Zm-6-35c-18-13-20-30-15-42 14 11 18 25 15 42Zm0-30c-11-16-9-32 0-42 8 15 8 28 0 42ZM57 235c-4-20 2-34 15-42 6 19-1 33-15 42Zm-16-35c1-20 10-31 24-34 1 19-8 30-24 34Zm-6-33c6-18 18-25 31-23-4 17-15 24-31 23Z"/><path pathLength="1" d="M194 265c49-38 61-89 47-146m-17 116c26-3 38-16 38-30-20 3-31 13-38 30Zm15-32c25-8 33-24 30-37-19 7-27 19-30 37Zm6-35c18-13 20-30 15-42-14 11-18 25-15 42Zm0-30c11-16 9-32 0-42-8 15-8 28 0 42Zm-22 97c4-20-2-34-15-42-6 19 1 33 15 42Zm16-35c-1-20-10-31-24-34-1 19 8 30 24 34Zm6-33c-6-18-18-25-31-23 4 17 15 24 31 23Z"/></g></svg>
         <p class="eyebrow">Com amor, para você</p>
         <div class="monogram-seal" aria-hidden="true"><span>W</span><em>&</em><span>V</span><svg viewBox="0 0 170 210"><path d="M85 5C38 5 8 48 8 100v22c0 49 33 83 77 83s77-34 77-83v-22C162 48 132 5 85 5Z"/></svg></div>
         <p class="seal-caption">14 . 11 . 2026</p>
@@ -184,6 +191,6 @@
     <div class="music-actions"><button id="music-minimize" type="button">Recolher painel <span aria-hidden="true">↓</span></button><button id="music-stop" type="button">Parar e fechar</button></div>
     <div class="music-panel-footer"><span>A música continua com o painel recolhido.</span><a id="spotify-link" href="https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D" target="_blank" rel="noopener noreferrer">Ouvir no Spotify <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
   </dialog>
-  <dialog class="photo-dialog" id="photo-dialog" aria-label="Foto ampliada de Wesley e Vinícius"><button class="dialog-close" type="button" aria-label="Fechar foto"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><figure><img src="assets/casal-1.jpg" alt=""><figcaption></figcaption></figure></dialog>
+  <dialog class="photo-dialog" id="photo-dialog" aria-label="Fotos de Wesley e Vinícius"><button class="dialog-close" type="button" aria-label="Fechar foto"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><figure><img src="assets/casal-1.jpg" alt=""><figcaption></figcaption></figure><div class="photo-navigation"><button class="photo-previous" type="button" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><span id="photo-position" aria-live="polite">1 de 3</span><button class="photo-next" type="button" aria-label="Próxima foto"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></dialog>
 </body>
 </html>

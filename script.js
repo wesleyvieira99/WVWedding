@@ -33,9 +33,31 @@
     if (event.matches) setMenu(false);
   });
 
+  // Motion is optional. The system preference always takes precedence.
+  const hero = $('.hero');
+  const motionButton = $('#motion-toggle');
+  let motionPaused = false;
+  const motionEnabled = () => !reducedMotion.matches && !motionPaused;
+  const syncMotion = () => {
+    const enabled = motionEnabled();
+    document.documentElement.classList.toggle('has-motion', enabled);
+    document.documentElement.classList.toggle('motion-paused', !enabled);
+    document.documentElement.classList.toggle('can-reveal', enabled && 'IntersectionObserver' in window);
+    motionButton.hidden = reducedMotion.matches;
+    motionButton.setAttribute('aria-pressed', String(motionPaused));
+    $('span:last-child', motionButton).textContent = motionPaused ? 'Retomar animações' : 'Pausar animações';
+  };
+  motionButton.addEventListener('click', () => {
+    motionPaused = !motionPaused;
+    syncMotion();
+  });
+  reducedMotion.addEventListener('change', syncMotion);
+
   // Progressive enhancement: content stays visible when JS is unavailable.
-  if ('IntersectionObserver' in window && !reducedMotion.matches) {
-    document.documentElement.classList.add('can-reveal');
+  $$('.line-art path, .monogram-seal path, .details-flower path, .message-flourish path').forEach(path => {
+    path.setAttribute('pathLength', '1');
+  });
+  if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -43,16 +65,25 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px 30px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px 12px 0px' });
     $$('.reveal').forEach(element => observer.observe(element));
+
+    // A quiet landscape only moves while somebody can actually see it.
+    const sceneryObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => hero.classList.toggle('scene-in-view', entry.isIntersecting));
+    }, { threshold: 0 });
+    sceneryObserver.observe(hero);
+  } else {
+    hero.classList.add('scene-in-view');
   }
+  const syncPageVisibility = () => {
+    document.documentElement.classList.toggle('page-inactive', document.hidden);
+  };
+  document.addEventListener('visibilitychange', syncPageVisibility);
+  syncPageVisibility();
+  syncMotion();
 
   // A visitor can change only the light, without replacing the real location.
-  document.documentElement.classList.toggle('has-motion', !reducedMotion.matches);
-  reducedMotion.addEventListener('change', event => {
-    document.documentElement.classList.toggle('has-motion', !event.matches);
-  });
-  const hero = $('.hero');
   const lightDial = $('.light-dial');
   const lightRange = $('#sunset-range');
   const lightOutput = $('#sunset-output');
@@ -79,7 +110,7 @@
     document.documentElement.style.setProperty('--reading-progress', available > 0 ? String(Math.min(1, Math.max(0, window.scrollY / available))) : '0');
   };
   const queueReadingProgress = () => {
-    if (!readingFrame && !reducedMotion.matches) readingFrame = requestAnimationFrame(updateReadingProgress);
+    if (!readingFrame && motionEnabled()) readingFrame = requestAnimationFrame(updateReadingProgress);
   };
   document.addEventListener('scroll', queueReadingProgress, { passive: true });
   window.addEventListener('resize', queueReadingProgress, { passive: true });
@@ -88,7 +119,7 @@
     $$('.message-form, .music-panel').forEach(surface => {
       let glassFrame = 0;
       surface.addEventListener('pointermove', event => {
-        if (reducedMotion.matches || glassFrame) return;
+        if (!motionEnabled() || glassFrame) return;
         const rect = surface.getBoundingClientRect();
         glassFrame = requestAnimationFrame(() => {
           surface.style.setProperty('--glass-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
@@ -272,20 +303,37 @@
 
   // Original photographs open in a native modal with focus containment and Escape.
   const photoDialog = $('#photo-dialog');
+  const photoButtons = $$('.portrait');
   let lastPhotoTrigger = null;
-  $$('.portrait').forEach(button => {
+  let currentPhotoIndex = 0;
+  const showPhoto = index => {
+    currentPhotoIndex = (index + photoButtons.length) % photoButtons.length;
+    const button = photoButtons[currentPhotoIndex];
+    const photo = $('figure img', photoDialog);
+    photo.src = button.dataset.photo;
+    photo.alt = $('img', button).alt;
+    $('figcaption', photoDialog).textContent = button.dataset.caption;
+    $('#photo-position').textContent = `${currentPhotoIndex + 1} de ${photoButtons.length}`;
+  };
+  photoButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
       if (typeof photoDialog.showModal !== 'function') {
         window.open(button.dataset.photo, '_blank', 'noopener,noreferrer');
         return;
       }
       lastPhotoTrigger = button;
-      $('figure img', photoDialog).src = button.dataset.photo;
-      $('figure img', photoDialog).alt = $('img', button).alt;
-      $('figcaption', photoDialog).textContent = button.dataset.caption;
+      showPhoto(index);
       photoDialog.showModal();
       document.body.classList.add('modal-open');
     });
+  });
+  $('.photo-previous').addEventListener('click', () => showPhoto(currentPhotoIndex - 1));
+  $('.photo-next').addEventListener('click', () => showPhoto(currentPhotoIndex + 1));
+  photoDialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showPhoto(currentPhotoIndex + (event.key === 'ArrowRight' ? 1 : -1));
+    }
   });
   $('.dialog-close').addEventListener('click', () => photoDialog.close());
   photoDialog.addEventListener('click', event => {

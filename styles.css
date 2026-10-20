@@ -150,3 +150,109 @@
 
 @media(min-width:761px){.hero-bottom{bottom:96px}}
 @media(max-width:760px){.hero-photo-caption{max-width:min(210px,calc(100% - 245px))}}
+
+/* Small birds share the sky; the names and controls stay undisturbed. */
+.sky-birds{position:absolute;inset:0 0 auto;height:33%;overflow:visible;pointer-events:none;z-index:1;display:none}
+.has-motion .sky-birds{display:block}
+.bird-flight{position:absolute;left:-70px;top:61%;width:42px;height:21px;opacity:0;animation:birds-crossing 38s -11s linear infinite}
+.bird-flight:nth-child(2){top:76%;width:29px;height:15px;animation-delay:-9.8s;animation-duration:39s}
+.bird-flight:nth-child(3){top:53%;width:23px;height:12px;animation-delay:-8.4s;animation-duration:40s}
+.bird-flight svg{display:block;width:100%;height:100%;overflow:visible;fill:#f0e2c3;filter:drop-shadow(0 1px 1px #10251e30)}
+.bird-wing{transform-origin:24px 17px;animation:wings-glide 1.9s ease-in-out infinite}
+.bird-flight:nth-child(2) .bird-wing{animation-delay:-.5s;animation-duration:1.7s}
+.bird-flight:nth-child(3) .bird-wing{animation-delay:-1.1s;animation-duration:2.1s}
+@keyframes birds-crossing{
+  0%{opacity:0;transform:translate3d(-4vw,16px,0) rotate(-3deg)}
+  6%{opacity:.65}
+  43%{transform:translate3d(54vw,-15px,0) rotate(2deg)}
+  76%{opacity:.65}
+  88%,100%{opacity:0;transform:translate3d(118vw,-32px,0) rotate(-2deg)}
+}
+@keyframes wings-glide{
+  0%,100%{transform:scaleY(.95)}
+  18%{transform:scaleY(.2)}
+  36%{transform:scaleY(.93)}
+  52%{transform:scaleY(.38)}
+  70%,86%{transform:scaleY(.88)}
+}
+.motion-toggle{position:absolute;z-index:3;top:112px;right:var(--gutter);display:inline-flex;align-items:center;gap:8px;min-height:40px;border:1px solid #f5f0e52e;border-radius:100px;padding:8px 13px;background:#142c241f;color:#f0eadc;font-size:8px;letter-spacing:.025em;line-height:1.4;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);transition:background .2s,border-color .2s}
+.motion-toggle:hover{background:#f5f0e519;border-color:#f5f0e565}
+.motion-toggle-mark{position:relative;width:9px;height:10px;display:block;flex:none}
+.motion-toggle-mark:before,.motion-toggle-mark:after{content:"";position:absolute;width:1px;height:8px;background:currentColor;top:1px;left:2px}
+.motion-toggle-mark:after{left:6px}
+.motion-toggle[aria-pressed="true"] .motion-toggle-mark:before{width:0;height:0;background:none;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;top:1px}
+.motion-toggle[aria-pressed="true"] .motion-toggle-mark:after{display:none}
+.hero:not(.scene-in-view) .hero-glow,.hero:not(.scene-in-view) .hero-motes i,.hero:not(.scene-in-view) .bird-flight,.hero:not(.scene-in-view) .bird-wing,.page-inactive *,.page-inactive *:before,.page-inactive *:after{animation-play-state:paused!important}
+
+/* Fine lines and generous curves echo the invitation's stationery. */
+.invitation{background:radial-gradient(ellipse at 15% 45%,#ede5d539,transparent 52%),var(--paper)}
+.invitation-heading{position:relative;isolation:isolate}
+.invitation-branches{position:absolute;z-index:-1;pointer-events:none;left:50%;top:50%;width:310px;max-width:108%;height:auto;transform:translate(-50%,-46%);stroke:var(--gold);stroke-width:.65;opacity:.5}
+.venue-frame:after,.destination-art:after{content:"";position:absolute;inset:12px;border:1px solid #fff9e661;border-radius:inherit;pointer-events:none;z-index:1}
+.venue-caption,.destination-footer{z-index:2}
+.venue-frame{border-radius:48% 48% 16px 16px}
+.destination-art{border-radius:49% 49% 18px 18px}
+.memories{position:relative;border-radius:64px 64px 0 0}
+.memories:before{content:"";position:absolute;left:14px;right:14px;top:14px;height:130px;border:1px solid #e5d9bc1f;border-bottom:0;border-radius:52px 52px 0 0;pointer-events:none;mask-image:linear-gradient(#000,transparent)}
+.portrait img{border-radius:10px}
+.portrait-two img{border-radius:46% 46% 10px 10px}
+.portrait-two .photo-enlarge{top:26px;right:20px}
+.portrait:focus-visible{outline-offset:12px;border-radius:8px}
+.message-form{border-radius:28px 28px 14px 14px}
+.gathering-note{position:relative;border-radius:70% 70% 0 0 / 9px 9px 0 0}
+.gathering-note .tiny-star{transition:transform .8s ease}
+.gathering-note:hover .tiny-star:first-child{transform:rotate(45deg)}
+.gathering-note:hover .tiny-star:last-child{transform:rotate(-45deg)}
+.text-link .icon{transition:transform .3s ease}
+.text-link:hover .icon{transform:translateX(3px)}
+
+/* Entries happen once. SVG ornaments draw in without moving the content. */
+.can-reveal .reveal{transition-duration:1s;transition-timing-function:cubic-bezier(.2,.65,.2,1)}
+.can-reveal .reveal:not(.visible){transform:translateY(28px)}
+.can-reveal .invitation-copy,.can-reveal .event-timeline,.can-reveal .details-accordion,.can-reveal .message-form{transition-delay:.12s}
+.can-reveal .line-art path,.can-reveal .monogram-seal path,.can-reveal .details-flower path,.can-reveal .message-flourish path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s .25s cubic-bezier(.3,.2,.3,1)}
+.can-reveal .visible .line-art path,.can-reveal .visible .monogram-seal path,.can-reveal .visible .details-flower path,.can-reveal .visible .message-flourish path{stroke-dashoffset:0}
+.has-motion.can-reveal .event-timeline.visible .timeline-item,.has-motion.can-reveal .invitation-copy.visible>p{animation:quiet-entry .85s .08s both cubic-bezier(.2,.65,.2,1)}
+.has-motion.can-reveal .event-timeline.visible .timeline-item:nth-child(2),.has-motion.can-reveal .invitation-copy.visible>p:nth-of-type(2){animation-delay:.22s}
+.has-motion.can-reveal .invitation-copy.visible>.invitation-signature{animation-delay:.34s}
+.has-motion .details-accordion details[open] .accordion-body{animation:quiet-entry .45s ease both}
+@keyframes quiet-entry{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* A small photographic album, navigable with buttons or the arrow keys. */
+.photo-dialog figure>img{max-height:calc(100svh - 185px);border-radius:8px}
+.photo-navigation{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:16px}
+.photo-navigation button{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid #f5f0e54d;background:#f5f0e509;color:var(--ivory);transition:background .2s,border-color .2s}
+.photo-navigation button:hover{background:#f5f0e51a;border-color:#f5f0e580}
+.photo-navigation button:focus-visible{outline-color:#ead2a5}
+.photo-navigation .icon{width:18px;height:18px}
+.photo-previous .icon{transform:rotate(180deg)}
+#photo-position{min-width:44px;text-align:center;font-size:9px;letter-spacing:.1em;color:#e5ddcb}
+@media(max-width:760px){
+  .sky-birds{height:28%}
+  .bird-flight{width:30px;height:15px;top:70%;animation-duration:31s}
+  .bird-flight:nth-child(2){width:22px;height:11px;top:58%;animation-duration:32s}
+  .bird-flight:nth-child(3){display:none}
+  .motion-toggle{top:91px;right:24px;min-height:36px;font-size:7px;padding:8px 11px}
+  .invitation-branches{width:216px;max-width:80%;transform:translate(-50%,-44%);stroke-width:.75}
+  .memories{border-radius:35px 35px 0 0}
+  .memories:before{left:10px;right:10px;top:10px;height:100px;border-radius:27px 27px 0 0}
+  .venue-frame:after,.destination-art:after{inset:9px}
+  .message-form{border-radius:22px 22px 12px 12px}
+  .can-reveal .invitation-copy,.can-reveal .event-timeline,.can-reveal .details-accordion,.can-reveal .message-form{transition-delay:0s}
+  .portrait-two .photo-enlarge{top:18px;right:12px}
+  .photo-dialog figure>img{max-height:calc(100svh - 200px);max-width:88vw}
+  .photo-dialog figcaption{font-size:20px;margin-top:13px}
+  .photo-navigation{margin-top:12px;gap:24px}
+  .photo-navigation button{width:44px;height:44px}
+}
+.motion-paused{scroll-behavior:auto}
+.motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}
+.motion-paused .hero-content>*,.motion-paused .hero-bottom,.motion-paused .reveal{opacity:1;transform:none;filter:none}
+.motion-paused .hero-motes,.motion-paused .hero-glow,.motion-paused .sky-birds,.motion-paused .reading-progress{display:none}
+.motion-paused .button:hover,.motion-paused .portrait:hover img,.motion-paused .venue-frame:hover>img,.motion-paused .text-link:hover .icon,.motion-paused .gathering-note:hover .tiny-star,.motion-paused .music-trigger:hover{transform:none}
+@media(prefers-reduced-motion:reduce){
+  .sky-birds,.motion-toggle{display:none!important}
+  .line-art path,.monogram-seal path,.details-flower path,.message-flourish path{stroke-dashoffset:0!important}
+  .venue-frame:hover>img,.text-link:hover .icon,.gathering-note:hover .tiny-star{transform:none}
+}
+@media print{.sky-birds,.motion-toggle,.invitation-branches,.photo-navigation{display:none!important}.memories:before{display:none}}

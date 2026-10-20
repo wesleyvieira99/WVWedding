@@ -20,7 +20,7 @@ Acesse `http://localhost:4173`. Não abra por `file://`: envio de formulário e 
 
 - `index.html`: textos, estrutura, links de rota, metadados e acessibilidade.
 - `styles.css`: identidade visual, estados de foco, mobile, impressão e movimento reduzido.
-- `script.js`: menu, contagem de dias no fuso de São Paulo, galeria, cópia de endereço e envio de recados.
+- `script.js`: menu, controle de movimento, contagem de dias no fuso de São Paulo, galeria, cópia de endereço e envio de recados.
 - `config.js`: domínio público, data, endereço, destinatário de e-mail e link do convite.
 - `assets/`: fotografias, fontes locais com suas licenças, favicon e arquivo de calendário.
 
@@ -79,4 +79,8 @@ O botão **Dar play no amor** abre um painel com embeds oficiais do Spotify para
 
 **Recolher painel** conserva o iframe para a trilha acompanhar a navegação; **Parar e fechar**, o X e Escape removem o iframe e encerram a reprodução. Ao trocar de seleção, o player anterior é removido. O painel recolhe ao clicar fora; o dock se reduz na seção de recados e se oculta enquanto o visitante digita em campos, evitando interferir no formulário. As mensagens do formulário não são repassadas ao Spotify.
 
-A página adiciona entradas graduais, pequenos pontos de luz e um brilho sutil de entardecer, além de reflexo suave sobre o vidro em dispositivos com mouse. Todos os movimentos e enfeites contínuos são desativados por `prefers-reduced-motion: reduce`; o conteúdo e os controles continuam funcionando.
+A página adiciona entradas graduais, pequenos pontos de luz e um brilho sutil de entardecer, além de reflexo suave sobre o vidro em dispositivos com mouse. Um pequeno grupo de aves em SVG atravessa somente o céu do hero: três no desktop e duas no celular, sem imagens adicionais ou bibliotecas de animação. A paisagem deixa de animar quando sai da tela, e as animações CSS pausam quando a aba fica em segundo plano.
+
+O botão **Pausar animações** interrompe os movimentos decorativos e as entradas; **Retomar animações** os reativa. A preferência do sistema `prefers-reduced-motion: reduce` prevalece, desativando os movimentos e ocultando esse botão. Sem JavaScript, o conteúdo continua visível e a paisagem permanece estática.
+
+Ramos e ornamentos vetoriais aparecem em traços graduais uma única vez ao entrar na tela. Molduras em arco, filetes finos e cantos suaves preservam as fotografias originais. A galeria ampliada permite navegar pelas três imagens com **Foto anterior**, **Próxima foto** ou as setas do teclado, informa a posição atual e devolve o foco à foto de origem ao fechar.
