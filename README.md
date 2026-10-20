@@ -25,7 +25,7 @@ Acesse `http://localhost:4173`. Não abra por `file://`: envio de formulário e 
 - `.htaccess`: redirecionamento para HTTPS e domínio canônico na hospedagem Apache/cPanel, preservando a rota de renovação do certificado.
 - `assets/`: fotografias, fontes locais com suas licenças, favicon e arquivo de calendário.
 
-O campo `invitationUrl` começa vazio. O botão do convite fica oculto até existir uma versão final. Para liberá-lo, coloque o PDF em `assets/convite-wv.pdf` e defina `invitationUrl: 'assets/convite-wv.pdf'`, ou use o link público final do Canva. Links externos abrem em outra aba; PDFs locais podem ser baixados.
+O convite final foi fornecido e aprovado pelo casal. A arte está em `assets/convite-wesley-vinicius.png`, no formato PNG, com dimensões de **1080 × 1920 px**. O arquivo foi copiado integralmente, sem edição visual ou recompressão. `invitationUrl` aponta para essa imagem, e o link **Guarde o nosso convite** permite baixá-la como `Convite-Wesley-e-Vinicius-FINAL.png`, inclusive sem JavaScript. O convite é uma peça gráfica; as fotografias originais do casal usadas no site continuam separadas.
 
 O arquivo `assets/wesley-e-vinicius.ics` marca o início da comemoração às 15h de Brasília (18h UTC), sem inventar um horário de encerramento. A contagem de dias segue o calendário de São Paulo, inclusive para visitantes em outros fusos.
 
