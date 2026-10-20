@@ -23,6 +23,8 @@ Acesse `http://localhost:4173`. Não abra por `file://`: envio de formulário e 
 - `script.js`: menu, controle de movimento, contagem de dias no fuso de São Paulo, galeria, cópia de endereço e envio de recados.
 - `portal.css` e `portal.js`: abertura de até cinco segundos com monograma animado e fechamento imediato ao iniciar uma interação.
 - `nature.css` e `nature.js`: flores nas margens e folhagens com movimento leve ligado à rolagem.
+- `music-tracks.js`: catálogo de 38 músicas com metadados públicos do Spotify, sem áudio ou imagens.
+- `music.js`: fila embaralhada, integração com a IFrame API oficial do Spotify e estados de reprodução confirmados pelo player.
 - `config.js`: domínio público, data, endereço, destinatário de e-mail e link do convite.
 - `.htaccess`: redirecionamento para HTTPS e domínio canônico na hospedagem Apache/cPanel, preservando a rota de renovação do certificado.
 - `assets/`: fotografias, fontes locais com suas licenças, favicon e arquivo de calendário.
@@ -78,6 +80,8 @@ node --check script.js
 node --check config.js
 node --check portal.js
 node --check nature.js
+node --check music-tracks.js
+node --check music.js
 ```
 
 Pontos de revisão após novas publicações: visual em desktop e celular; navegação por teclado; menu mobile; abertura/fechamento de fotos; calendário; Google Maps/Waze; abertura do convite final; HTTPS, redirecionamentos e envio de recados. A ativação da origem HTTPS e a chegada de um recado enviado pelo navegador foram confirmadas em 20/10/2026 às 03:34:12 UTC. O botão de envio nasce desabilitado no HTML e só é habilitado após a instalação do handler JavaScript. O formulário declara `method="post"`, para evitar dados pessoais em query strings se o JavaScript não carregar.
@@ -88,11 +92,13 @@ A abertura dura até **cinco segundos**: um único **V** aparece, e seu traço s
 
 A luz do hero avança automaticamente até o entardecer em um ciclo suave de **28 segundos**: cerca de 10 segundos de evolução, 7 segundos de permanência e um retorno de 11 segundos. Não há seletor nem ação necessária para iniciar. A legenda explica a interpretação artística da luz; textos e controles mantêm contraste ao longo da transição. O efeito usa somente opacidade CSS sobre as duas imagens existentes, sem novos downloads ou temporizadores JavaScript.
 
-O botão **Dar play no amor** abre um painel com três opções em players oficiais do Spotify: [ANAVITÓRIA](https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D), **TIAGO IORC**, que abre a seleção [This Is TIAGO IORC](https://open.spotify.com/playlist/37i9dQZF1DZ06evO2w94yY), e [Memórias Póstumas · Jão](https://open.spotify.com/album/37oi5fAM46AtRr3bXNj8M3). O visitante escolhe e inicia a reprodução no player. Não há autoplay, download de músicas ou falsa indicação de reprodução.
+O botão **Dar play no amor** abre um único player com **38 músicas misturadas**, sem seletores de artistas. O catálogo reúne as 11 faixas de [ANAVITÓRIA](https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D), as 14 de [Memórias Póstumas · Jão](https://open.spotify.com/album/37oi5fAM46AtRr3bXNj8M3) e os primeiros 14 itens de [This Is TIAGO IORC](https://open.spotify.com/playlist/37i9dQZF1DZ06evO2w94yY) na consulta de 20/10/2026. “Trevo (Tu)”, presente em duas fontes, aparece uma única vez. A ordem é embaralhada e alterna os grupos de artistas sempre que possível, inclusive ao renovar a fila.
 
-O Spotify controla a reprodução e a duração disponível em cada contexto, conforme a sessão, o navegador e a disponibilidade do conteúdo. O site não promete reprodução completa no player incorporado, e uma assinatura Premium não é apresentada como garantia disso. Se tocar apenas uma prévia, o rodapé orienta usar **Continuar no Spotify** para abrir a seleção no serviço e entrar na conta. A permissão `encrypted-media` permanece no iframe; ela permite os recursos do player, mas não elimina as restrições definidas pelo Spotify.
+A capa, o título, o artista e os controles de play/pausa são apresentados pelo player nativo do Spotify; o site informa também o álbum da faixa. A integração usa a IFrame API oficial, carregada somente quando o painel é aberto. O visitante inicia a reprodução, e a fila solicita a próxima música somente após observar progresso até o fim informado pelo Spotify. Pausas manuais e o simples passar do tempo não avançam a fila. O indicador visual acompanha o progresso reportado e para em pausas, carregamento ou ausência de novas atualizações. Não há reprodução automática ao abrir o site, arquivos de áudio hospedados nem capas copiadas para o repositório.
 
-**Recolher painel** conserva o iframe para a trilha acompanhar a navegação; **Parar e fechar**, o X e Escape removem o iframe e encerram a reprodução. Ao trocar de seleção, o player anterior é removido. O painel recolhe ao clicar fora; o dock se reduz na seção de recados e se oculta enquanto o visitante digita em campos, evitando interferir no formulário. As mensagens do formulário não são repassadas ao Spotify.
+O Spotify controla a reprodução e a duração disponível em cada contexto, conforme a sessão, o navegador e a disponibilidade do conteúdo. O site não promete reprodução completa no player incorporado, e uma assinatura Premium não é apresentada como garantia disso. Se tocar apenas uma prévia, o rodapé orienta usar **Continuar no Spotify** para abrir a faixa no serviço e entrar na conta. A permissão `encrypted-media` permanece no iframe; ela permite os recursos do player, mas não elimina as restrições definidas pelo Spotify. Se a API falhar, o site apresenta o embed oficial da faixa e informa que a sequência automática está indisponível.
+
+**Recolher** conserva o iframe para a trilha acompanhar a navegação; o X e Escape removem o iframe e encerram a reprodução. Ao reabrir depois de fechar, uma nova instância é criada, e callbacks antigos não podem alterar o player atual. O painel recolhe ao entrar no formulário; o dock se reduz na seção de recados e se oculta enquanto o visitante digita em campos, evitando interferir no formulário. As mensagens do formulário não são repassadas ao Spotify.
 
 A página adiciona entradas graduais, pequenos pontos de luz e um brilho sutil de entardecer, além de reflexo suave sobre o vidro em dispositivos com mouse. Um pequeno grupo de aves em SVG atravessa somente o céu do hero: três no desktop e duas no celular, sem imagens adicionais ou bibliotecas de animação. A paisagem deixa de animar quando sai da tela, e as animações CSS pausam quando a aba fica em segundo plano.
 
