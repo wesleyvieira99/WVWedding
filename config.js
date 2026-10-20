@@ -3,9 +3,9 @@ window.WEDDING_CONFIG = Object.freeze({
   publicUrl: 'https://casalvw.com/',
   invitationUrl: '', // Ex.: 'assets/convite-wv.pdf' ou link público final do Canva.
   recipientEmail: 'wesleysv11@gmail.com',
-  // Após a primeira solicitação, confirme o link de ativação enviado pelo FormSubmit.
-  // Também é possível trocar o e-mail pelo identificador protegido fornecido pelo serviço.
-  formSubmitId: '',
+  // Identificador público do FormSubmit; ativação e entrega confirmadas via HTTP.
+  // O e-mail acima permanece disponível para o fallback pelo aplicativo do visitante.
+  formSubmitId: '7a319d7e744ffc110f0ae64860a5017e',
   weddingDate: '2026-11-14T15:00:00-03:00',
   address: 'Avenida Alexandre Chauar, 1604, Sarapuí, São Paulo, 18225-000, Brasil'
 });

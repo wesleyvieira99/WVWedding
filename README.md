@@ -4,7 +4,7 @@ Site do casamento de Wesley e Vinícius, em português, para os dias **14 e 15 d
 
 Domínio definido: **https://casalvw.com/**
 
-Hospedagem escolhida: **GoDaddy**. Repositório de origem: [wesleyvieira99/WVWedding](https://github.com/wesleyvieira99/WVWedding). A preparação do código e do pacote não confirma que o domínio já está publicado.
+Hospedagem: **GoDaddy**. Repositório de origem: [wesleyvieira99/WVWedding](https://github.com/wesleyvieira99/WVWedding). O site já responde por HTTP no domínio; HTTPS está em configuração. O pacote pode conter melhorias ainda não implantadas.
 
 ## Executar localmente
 
@@ -32,9 +32,9 @@ O arquivo `assets/wesley-e-vinicius.ics` marca o início da comemoração às 15
 
 O formulário usa o serviço externo [FormSubmit](https://formsubmit.co/ajax-documentation), enviando para **wesleysv11@gmail.com**, configurado em `config.js`. Não há chaves secretas no site.
 
-**Ativação necessária:** na primeira solicitação, o FormSubmit pode enviar um e-mail de confirmação ao destinatário. Abra o e-mail e confirme a ativação. Faça depois um envio de teste a partir da URL publicada e confirme o recebimento na caixa de entrada, incluindo spam. A interface só mostra sucesso após resposta HTTP válida e `success: true` do serviço; respostas que indicam ativação pendente não são tratadas como envio concluído. A aceitação pelo serviço não substitui a verificação de chegada ao e-mail.
+**Ativado e entrega confirmada:** a ativação foi concluída para `http://casalvw.com/`, e o recado de teste chegou ao Gmail do destinatário em **20/10/2026 às 02:59 UTC**. HTTPS está em configuração; após sua ativação, conferir novamente o envio a partir dessa origem. A interface só mostra sucesso após resposta HTTP válida e `success: true` do serviço; respostas que indiquem uma nova ativação pendente continuam sendo tratadas como envio não concluído.
 
-Se o FormSubmit fornecer um identificador protegido, ele pode ser colocado em `formSubmitId`, no lugar de usar o endereço na URL da API. O destinatário atual também aparece no fallback para aplicativos de e-mail. E-mails e conteúdo de um site estático são públicos; não coloque credenciais no repositório.
+`formSubmitId` já contém o identificador público fornecido pelo FormSubmit, usado no lugar do endereço na URL da API. Ele não é uma chave secreta. O destinatário permanece configurado para o fallback em aplicativos de e-mail. E-mails e conteúdo de um site estático são públicos; não coloque credenciais no repositório.
 
 O formulário inclui nome, e-mail opcional e recado, com limites de tamanho, validação, campo antispam, bloqueio de envios duplicados enquanto aguarda, timeout de 25 segundos e mensagens acessíveis de estado. Em falhas, mantém o texto e oferece uma alternativa pelo aplicativo de e-mail. Não salva recados em banco de dados, no navegador ou no próprio site. O processamento e a entrega dependem do FormSubmit. Não envia confirmação automática ao convidado.
 
@@ -69,7 +69,7 @@ node --check script.js
 node --check config.js
 ```
 
-Pontos de revisão antes de compartilhar: visual em desktop e celular; navegação por teclado; menu mobile; abertura/fechamento de fotos; calendário; Google Maps/Waze; abertura do convite final; envio real e recebimento de recados. A ativação e a entrega no e-mail precisam de confirmação do destinatário. No teste inicial de integração, o FormSubmit retornou ativação pendente (`success: false`) e enviou a solicitação de confirmação ao destinatário; nenhum resultado de entrega foi presumido. O botão de envio nasce desabilitado no HTML e só é habilitado após a instalação do handler JavaScript. O formulário declara `method="post"`, para evitar dados pessoais em query strings se o JavaScript não carregar.
+Pontos de revisão antes de compartilhar: visual em desktop e celular; navegação por teclado; menu mobile; abertura/fechamento de fotos; calendário; Google Maps/Waze; abertura do convite final; HTTPS e envio de recados pela origem HTTPS. A ativação e a chegada de um recado via HTTP já foram confirmadas em 20/10/2026 às 02:59 UTC. O botão de envio nasce desabilitado no HTML e só é habilitado após a instalação do handler JavaScript. O formulário declara `method="post"`, para evitar dados pessoais em query strings se o JavaScript não carregar.
 
 ## Trilha e interação
 
