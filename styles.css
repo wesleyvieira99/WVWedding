@@ -91,8 +91,10 @@
 .music-emblem{width:43px;height:43px;display:grid;place-items:center;border:1px solid #d4c6a84d;border-radius:50%;background:radial-gradient(circle at 30% 20%,#e1d2aa1f,transparent 80%);flex:none}
 .music-emblem .icon{width:22px;height:22px;color:#e4d3ac}
 #music-description{font-size:10px;color:#e0dfd3;margin-top:22px}
-.music-choices{display:flex;gap:7px;padding:4px;background:#112b264f;border:1px solid #ffffff15;border-radius:100px;margin:14px 0}
-.music-choice{border:1px solid transparent;color:#e0dfd4;background:transparent;border-radius:100px;font-size:9px;font-weight:500;letter-spacing:.02em;padding:10px 12px;flex:1;transition:background .2s,color .2s;border-color:transparent}
+.music-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;padding:4px;background:#112b264f;border:1px solid #ffffff15;border-radius:16px;margin:14px 0}
+.music-choice{border:1px solid transparent;color:#e0dfd4;background:transparent;border-radius:12px;font-size:9px;font-weight:500;letter-spacing:.02em;padding:10px 12px;min-height:42px;transition:background .2s,color .2s;border-color:transparent}
+.music-choice-album{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:10px}
+.music-choice-album small{font-size:8px;font-weight:400;opacity:.78;border-left:1px solid currentColor;padding-left:10px}
 .music-choice.is-selected{background:#f5f0e5;color:var(--forest);border-color:#ffffff33;box-shadow:0 2px 6px #10251b18}
 .music-choice:hover:not(.is-selected){background:#ffffff0e}
 .music-embed{border-radius:12px;overflow:hidden;min-height:152px;background:#1430268c}

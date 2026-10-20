@@ -122,7 +122,12 @@
     mpb: {
       embed: 'https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO2w94yY?theme=0',
       url: 'https://open.spotify.com/playlist/37i9dQZF1DZ06evO2w94yY',
-      title: 'MPB leve: This Is TIAGO IORC — player oficial do Spotify'
+      title: 'TIAGO IORC — player oficial do Spotify'
+    },
+    memorias: {
+      embed: 'https://open.spotify.com/embed/album/37oi5fAM46AtRr3bXNj8M3?theme=0',
+      url: 'https://open.spotify.com/album/37oi5fAM46AtRr3bXNj8M3',
+      title: 'Memórias Póstumas · Jão — player oficial do Spotify'
     }
   };
   let selectedMusic = 'anavitoria';

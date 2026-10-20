@@ -29,12 +29,12 @@
       }, 6000);
     }
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261020-motion">
+  <link rel="stylesheet" href="styles.css?v=20261020-music">
   <link rel="stylesheet" href="portal.css?v=20261020-motion">
   <link rel="stylesheet" href="nature.css?v=20261020-motion">
   <script src="portal.js?v=20261020-motion" defer></script>
   <script src="config.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=20261020-music" defer></script>
   <script src="nature.js?v=20261020-motion" defer></script>
 </head>
 <body>
@@ -244,10 +244,10 @@
     <button class="music-close" type="button" aria-label="Fechar e parar a música"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
     <div class="music-panel-heading"><span class="music-emblem" aria-hidden="true"><svg class="icon"><use href="#i-music"/></svg></span><div><p class="eyebrow">Para embalar esse momento</p><h2 id="music-title">Dar play no <em>amor.</em></h2></div></div>
     <p id="music-description">Escolha a trilha e toque no play.</p>
-    <div class="music-choices" role="group" aria-label="Escolher trilha"><button type="button" class="music-choice is-selected" data-playlist="anavitoria" aria-pressed="true">ANAVITÓRIA</button><button type="button" class="music-choice" data-playlist="mpb" aria-pressed="false">MPB leve</button></div>
+    <div class="music-choices" role="group" aria-label="Escolher trilha"><button type="button" class="music-choice is-selected" data-playlist="anavitoria" aria-pressed="true">ANAVITÓRIA</button><button type="button" class="music-choice" data-playlist="mpb" aria-pressed="false">TIAGO IORC</button><button type="button" class="music-choice music-choice-album" data-playlist="memorias" aria-pressed="false">Memórias Póstumas <small>Jão</small></button></div>
     <div class="music-embed" id="music-embed"></div>
     <div class="music-actions"><button id="music-minimize" type="button">Recolher painel <span aria-hidden="true">↓</span></button><button id="music-stop" type="button">Parar e fechar</button></div>
-    <div class="music-panel-footer"><span>A música continua com o painel recolhido.</span><a id="spotify-link" href="https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D" target="_blank" rel="noopener noreferrer">Ouvir no Spotify <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
+    <div class="music-panel-footer"><span>Se tocar só uma prévia, abra no Spotify e entre na sua conta para continuar ouvindo.</span><a id="spotify-link" href="https://open.spotify.com/album/6KD10xly79MXn1PT0dns6D" target="_blank" rel="noopener noreferrer">Continuar no Spotify <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
   </dialog>
   <dialog class="photo-dialog" id="photo-dialog" aria-label="Fotos de Wesley e Vinícius"><button class="dialog-close" type="button" aria-label="Fechar foto"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><figure><img src="assets/casal-1.jpg" alt=""><figcaption></figcaption></figure><div class="photo-navigation"><button class="photo-previous" type="button" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><span id="photo-position" aria-live="polite">1 de 3</span><button class="photo-next" type="button" aria-label="Próxima foto"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></dialog>
 </body>
