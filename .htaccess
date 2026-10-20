@@ -1,0 +1,10 @@
+# Keep HTTP-01 certificate renewal reachable before canonical redirects.
+RewriteEngine On
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+
+# Send HTTP and alternate hostnames to the HTTPS canonical domain.
+# Capture the original encoded path; Apache preserves the existing query string.
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^casalvw\.com$ [NC]
+RewriteCond %{THE_REQUEST} \s(/[^\s?]*)
+RewriteRule ^ https://casalvw.com%1 [R=301,L,NE]
