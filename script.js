@@ -33,24 +33,15 @@
     if (event.matches) setMenu(false);
   });
 
-  // Motion is optional. The system preference always takes precedence.
+  // The landscape moves automatically; the system's motion preference prevails.
   const hero = $('.hero');
-  const motionButton = $('#motion-toggle');
-  let motionPaused = false;
-  const motionEnabled = () => !reducedMotion.matches && !motionPaused;
+  const motionEnabled = () => !reducedMotion.matches;
   const syncMotion = () => {
     const enabled = motionEnabled();
     document.documentElement.classList.toggle('has-motion', enabled);
     document.documentElement.classList.toggle('motion-paused', !enabled);
     document.documentElement.classList.toggle('can-reveal', enabled && 'IntersectionObserver' in window);
-    motionButton.hidden = reducedMotion.matches;
-    motionButton.setAttribute('aria-pressed', String(motionPaused));
-    $('span:last-child', motionButton).textContent = motionPaused ? 'Retomar animações' : 'Pausar animações';
   };
-  motionButton.addEventListener('click', () => {
-    motionPaused = !motionPaused;
-    syncMotion();
-  });
   reducedMotion.addEventListener('change', syncMotion);
 
   // Progressive enhancement: content stays visible when JS is unavailable.
@@ -82,25 +73,6 @@
   document.addEventListener('visibilitychange', syncPageVisibility);
   syncPageVisibility();
   syncMotion();
-
-  // A visitor can change only the light, without replacing the real location.
-  const lightDial = $('.light-dial');
-  const lightRange = $('#sunset-range');
-  const lightOutput = $('#sunset-output');
-  const landscapeCaption = $('#landscape-caption');
-  const setEveningLight = () => {
-    const light = Number(lightRange.value);
-    hero.style.setProperty('--sunset', String(light / 100));
-    hero.style.setProperty('--sunset-glow', String(light / 100));
-    lightOutput.value = light === 0 ? 'Luz do dia' : light < 70 ? 'Fim de tarde' : 'Entardecer';
-    lightRange.setAttribute('aria-valuetext', light === 0 ? 'Fotografia original, luz do dia' : `${light}% de luz do entardecer`);
-    landscapeCaption.textContent = light === 0
-      ? 'Chácara J.F · fotografia original à luz do dia'
-      : 'Chácara J.F · interpretação da luz do entardecer';
-  };
-  lightRange.addEventListener('input', setEveningLight);
-  lightDial.hidden = false;
-  setEveningLight();
 
   // Fine, nonessential cues; all continuous decoration respects reduced motion.
   let readingFrame = 0;
