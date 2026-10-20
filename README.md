@@ -2,7 +2,7 @@
 
 Site do casamento de Wesley e Vinícius, em português, para os dias **14 e 15 de novembro de 2026**, em Sarapuí. O encontro começa às **15h do dia 14**. Feito em HTML, CSS e JavaScript sem framework, sem instalação de dependências e com caminhos relativos compatíveis com hospedagem estática.
 
-Domínio definido: **https://viniweswedding.com.br/**
+Domínio definido: **https://casalvw.com/**
 
 Hospedagem escolhida: **GoDaddy**. Repositório de origem: [wesleyvieira99/WVWedding](https://github.com/wesleyvieira99/WVWedding). A preparação do código e do pacote não confirma que o domínio já está publicado.
 
@@ -40,9 +40,9 @@ O formulário inclui nome, e-mail opcional e recado, com limites de tamanho, val
 
 ## Publicar na GoDaddy
 
-O domínio escolhido é **https://viniweswedding.com.br/**. O GitHub mantém o código-fonte; o destino de hospedagem é a GoDaddy. Não é necessário build, Node.js, banco de dados ou servidor de aplicação para esta página.
+O domínio escolhido é **https://casalvw.com/**. O GitHub mantém o código-fonte; o destino de hospedagem é a GoDaddy. Não é necessário build, Node.js, banco de dados ou servidor de aplicação para esta página.
 
-O pacote de entrega `WVWedding-site.zip` contém uma pasta `site/` com os arquivos públicos e um `LEIA-ME-PUBLICACAO.txt` fora dela. Depois de identificar o serviço de hospedagem associado ao domínio na GoDaddy, publique **o conteúdo de `site/`** no diretório que serve a raiz desse domínio. O método e o diretório exatos dependem do plano contratado e devem ser confirmados no painel. O arquivo `index.html` deve responder na raiz de `https://viniweswedding.com.br/`, com `assets/` ao lado. Não publique a pasta `.git`, documentos de reserva, arquivos de trabalho ou instruções internas.
+O pacote de entrega `WVWedding-site.zip` contém uma pasta `site/` com os arquivos públicos e um `LEIA-ME-PUBLICACAO.txt` fora dela. Depois de identificar o serviço de hospedagem associado ao domínio na GoDaddy, publique **o conteúdo de `site/`** no diretório que serve a raiz desse domínio. O método e o diretório exatos dependem do plano contratado e devem ser confirmados no painel. O arquivo `index.html` deve responder na raiz de `https://casalvw.com/`, com `assets/` ao lado. Não publique a pasta `.git`, documentos de reserva, arquivos de trabalho ou instruções internas.
 
 Os metadados canonical/Open Graph e o calendário usam o domínio definido. Todos os recursos locais mantêm caminhos relativos. Ao mudar o domínio, atualize `publicUrl` em `config.js`, canonical/Open Graph em `index.html` e a URL no calendário.
 

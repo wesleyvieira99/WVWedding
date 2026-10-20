@@ -1,6 +1,6 @@
 // Configuração pública do site. Nunca coloque senhas ou chaves privadas aqui.
 window.WEDDING_CONFIG = Object.freeze({
-  publicUrl: 'https://viniweswedding.com.br/',
+  publicUrl: 'https://casalvw.com/',
   invitationUrl: '', // Ex.: 'assets/convite-wv.pdf' ou link público final do Canva.
   recipientEmail: 'wesleysv11@gmail.com',
   // Após a primeira solicitação, confirme o link de ativação enviado pelo FormSubmit.

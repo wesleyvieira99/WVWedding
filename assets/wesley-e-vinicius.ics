@@ -4,7 +4,7 @@ PRODID:-//WVWedding//Wesley e Vinícius//PT-BR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:20261114T180000-wv-wedding@viniweswedding.com.br
+UID:20261114T180000-wv-wedding@casalvw.com
 DTSTAMP:20261019T120000Z
 DTSTART:20261114T180000Z
 SUMMARY:Wesley & Vinícius — vamos celebrar!
@@ -13,7 +13,7 @@ DESCRIPTION:Depois do nosso casamento civil\, esperamos você na chácara
   para dormir e aproveitar o domingo\, dia 15. Combine os lugares conosco.
 LOCATION:Avenida Alexandre Chauar\, 1604\, Sarapuí\, São Paulo\, 18225-00
  0
-URL:https://viniweswedding.com.br/
+URL:https://casalvw.com/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
