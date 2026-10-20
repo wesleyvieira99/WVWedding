@@ -20,11 +20,74 @@
   <link rel="preload" href="assets/fonts/cormorant-garamond-normal-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-normal-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/venue-sunset.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css">
+  <script>
+    // The opening is decorative and always fails open if another script fails.
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('intro-pending');
+      window.weddingIntroFallback = window.setTimeout(function () {
+        document.documentElement.classList.remove('intro-pending', 'intro-playing');
+      }, 6000);
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css?v=20261020-motion">
+  <link rel="stylesheet" href="portal.css?v=20261020-motion">
+  <link rel="stylesheet" href="nature.css?v=20261020-motion">
+  <script src="portal.js?v=20261020-motion" defer></script>
   <script src="config.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="nature.js?v=20261020-motion" defer></script>
 </head>
 <body>
+  <div class="wedding-portal" id="wedding-portal" aria-hidden="true">
+    <div class="portal-aura"></div>
+    <div class="portal-grain"></div>
+    <div class="portal-stage">
+      <p class="portal-overline">Duas histórias. Um encontro.</p>
+      <div class="portal-gate">
+        <div class="portal-landscape"></div>
+        <svg class="portal-arch" viewBox="0 0 360 450" fill="none">
+          <path class="portal-arch-outer" pathLength="1" d="M14 436V185C14 90 88 14 180 14S346 90 346 185V436Z"/>
+          <path class="portal-arch-inner" pathLength="1" d="M27 423V185C27 98 96 27 180 27S333 98 333 185V423Z"/>
+        </svg>
+        <svg class="portal-botanical portal-botanical-left" viewBox="0 0 130 360" fill="none">
+          <path class="portal-stem" pathLength="1" d="M106 350C33 284 24 197 82 54M64 262C35 243 26 220 29 197M55 210C77 191 95 165 101 143M59 161C39 144 33 124 37 101M76 91C90 76 98 59 99 39"/>
+          <g class="portal-leaves">
+            <path d="M62 269C21 266 5 239 12 216C38 226 58 246 62 269ZM49 226C16 208 8 179 22 159C44 179 53 200 49 226ZM49 185C20 166 19 138 32 120C50 142 55 162 49 185ZM62 132C41 109 46 84 62 69C75 92 72 113 62 132ZM78 87C73 60 88 39 105 33C107 58 96 76 78 87Z"/>
+            <path d="M56 242C54 211 72 189 95 189C93 216 76 233 56 242ZM53 196C61 167 83 154 105 160C94 184 74 195 53 196ZM64 145C74 121 97 112 114 120C101 140 83 148 64 145Z"/>
+          </g>
+          <g class="portal-buds"><circle cx="29" cy="195" r="4"/><circle cx="101" cy="141" r="3"/><circle cx="37" cy="99" r="3"/></g>
+        </svg>
+        <svg class="portal-botanical portal-botanical-right" viewBox="0 0 130 360" fill="none">
+          <path class="portal-stem" pathLength="1" d="M106 350C33 284 24 197 82 54M64 262C35 243 26 220 29 197M55 210C77 191 95 165 101 143M59 161C39 144 33 124 37 101M76 91C90 76 98 59 99 39"/>
+          <g class="portal-leaves">
+            <path d="M62 269C21 266 5 239 12 216C38 226 58 246 62 269ZM49 226C16 208 8 179 22 159C44 179 53 200 49 226ZM49 185C20 166 19 138 32 120C50 142 55 162 49 185ZM62 132C41 109 46 84 62 69C75 92 72 113 62 132ZM78 87C73 60 88 39 105 33C107 58 96 76 78 87Z"/>
+            <path d="M56 242C54 211 72 189 95 189C93 216 76 233 56 242ZM53 196C61 167 83 154 105 160C94 184 74 195 53 196ZM64 145C74 121 97 112 114 120C101 140 83 148 64 145Z"/>
+          </g>
+          <g class="portal-buds"><circle cx="29" cy="195" r="4"/><circle cx="101" cy="141" r="3"/><circle cx="37" cy="99" r="3"/></g>
+        </svg>
+        <div class="portal-monogram">
+          <svg viewBox="0 0 340 190" fill="none">
+            <g class="portal-initial">
+              <path class="portal-letter" pathLength="1" d="M84 38L127 152L170 38"/>
+              <path class="portal-serif" d="M73 38H96M158 38H181"/>
+            </g>
+            <g class="portal-continuation">
+              <path class="portal-extension" pathLength="1" d="M170 38L213 152L256 38"/>
+              <path class="portal-extension-serif" d="M244 38H267"/>
+            </g>
+            <path class="portal-union" d="M165 28L170 16L175 28L170 40Z"/>
+          </svg>
+          <span class="portal-monogram-caption">Juntos, um novo capítulo.</span>
+        </div>
+        <span class="portal-light portal-light-one"></span>
+        <span class="portal-light portal-light-two"></span>
+        <span class="portal-light portal-light-three"></span>
+      </div>
+      <p class="portal-names">Wesley <em>&</em> Vinícius</p>
+      <p class="portal-date">14 . 11 . 2026</p>
+      <span class="portal-thread"></span>
+    </div>
+  </div>
   <div class="reading-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

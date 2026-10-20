@@ -1,0 +1,64 @@
+/* A five-second welcome, made with the same landscape and local typography. */
+.wedding-portal{display:none;position:fixed;inset:0;z-index:120;overflow:hidden;pointer-events:none;color:var(--ivory);background:#122d24}
+.intro-pending .wedding-portal{display:grid;place-items:center}
+.portal-aura{position:absolute;inset:-15%;background:radial-gradient(ellipse at 50% 43%,#ad92572b,transparent 40%),radial-gradient(ellipse at 12% 90%,#70876b36,transparent 45%),linear-gradient(145deg,#1b3b2f,#10291f 70%)}
+.portal-grain{position:absolute;inset:0;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E");pointer-events:none}
+.portal-stage{position:relative;width:min(460px,90vw);text-align:center;transform:translateY(-4px)}
+.portal-overline{position:relative;margin-bottom:21px;color:#ded6c1;font:400 9px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase}
+.portal-gate{position:relative;width:min(320px,60vw);height:min(400px,75vw);margin:0 auto;transform-origin:50% 56%}
+.portal-landscape{position:absolute;inset:13px 15px 14px;border-radius:160px 160px 3px 3px;background:linear-gradient(180deg,#132b2366,#132b2380 55%,#132b23c7),url("assets/venue-sunset.png") 52% 45%/cover;opacity:.64;box-shadow:0 0 80px #e8c78512,inset 0 0 50px #122d2480}
+.portal-arch{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.portal-arch-outer{stroke:#d4bd8d;stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1}
+.portal-arch-inner{stroke:#e3d9bd36;stroke-width:.6}
+.portal-botanical{position:absolute;width:36%;height:88%;bottom:-7%;overflow:visible;transform-origin:75% 100%}
+.portal-botanical-left{left:-25%;transform:rotate(-8deg)}
+.portal-botanical-right{right:-25%;transform:scaleX(-1) rotate(-8deg)}
+.portal-stem{stroke:#c7d0ac;stroke-width:1.15;stroke-dasharray:1;stroke-dashoffset:1}
+.portal-leaves{fill:#94a88733;stroke:#abb99a9c;stroke-width:.6;opacity:0}
+.portal-buds{fill:#e6cf9a;opacity:0}
+.portal-monogram{position:absolute;left:-3%;right:-3%;top:27%}
+.portal-monogram svg{display:block;width:100%;height:auto;overflow:visible}
+.portal-letter,.portal-extension{stroke:#fff8e6;stroke-width:2.8;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.portal-serif,.portal-extension-serif{stroke:#fff8e6;stroke-width:1.1;opacity:0}
+.portal-initial{transform:translateX(43px)}
+.portal-continuation{transform:translateX(43px)}
+.portal-union{fill:#ead4a0;opacity:0}
+.portal-monogram-caption{display:block;margin-top:14px;font:400 9px/1.5 var(--sans);letter-spacing:.08em;color:#eee5d2;opacity:0}
+.portal-names{margin:27px 0 3px;font:400 34px/1.2 var(--serif);letter-spacing:-.025em}
+.portal-names em{color:#c5ad7c;font-weight:400;margin:0 3px}
+.portal-date{font:400 9px/1.6 var(--sans);letter-spacing:.25em;color:#c4c8b5}
+.portal-thread{display:block;width:74px;height:1px;margin:21px auto 0;background:#cab382;transform:scaleX(0);transform-origin:center}
+.portal-light{position:absolute;display:block;width:3px;height:3px;border-radius:50%;background:#f1d69c;box-shadow:0 0 14px #f5dcaa;opacity:0}
+.portal-light-one{left:17%;top:65%}.portal-light-two{right:19%;top:22%}.portal-light-three{left:48%;top:13%;width:2px;height:2px}
+.intro-playing .wedding-portal{animation:portal-unveil 5s linear both}
+.intro-playing .portal-arch-outer,.intro-playing .portal-stem{animation:portal-draw 1.7s .1s cubic-bezier(.22,.61,.36,1) both}
+.intro-playing .portal-landscape{animation:portal-landscape-arrive 4.6s cubic-bezier(.2,.6,.25,1) both}
+.intro-playing .portal-leaves,.intro-playing .portal-buds{animation:portal-bloom 1.8s .25s ease-out both}
+.intro-playing .portal-overline,.intro-playing .portal-names,.intro-playing .portal-date{animation:portal-copy-in 1.1s .1s ease-out both}
+.intro-playing .portal-letter{animation:portal-draw 1s .3s ease-in-out both}
+.intro-playing .portal-serif{animation:portal-bloom 1s .7s ease-out both}
+.intro-playing .portal-initial,.intro-playing .portal-continuation{animation:portal-make-space 1.4s 1.65s cubic-bezier(.45,0,.2,1) both}
+.intro-playing .portal-extension{animation:portal-draw 1.35s 1.75s cubic-bezier(.45,0,.2,1) both}
+.intro-playing .portal-extension-serif{animation:portal-bloom .5s 2.7s ease-out both}
+.intro-playing .portal-union{animation:portal-union-light 1.35s 2.75s ease-out both}
+.intro-playing .portal-monogram-caption{animation:portal-copy-in 1s 2.5s ease-out both}
+.intro-playing .portal-thread{animation:portal-thread-grow 4.15s .2s ease-in-out both}
+.intro-playing .portal-light{animation:portal-firefly 3.8s .4s ease-in-out both}
+.intro-playing .portal-light-two{animation-delay:.8s}.intro-playing .portal-light-three{animation-delay:1.1s}
+.intro-playing .portal-gate{animation:portal-gate-open 5s cubic-bezier(.2,.7,.2,1) both}
+.intro-pending .hero *,.intro-pending .hero *:before,.intro-pending .hero *:after{animation-play-state:paused!important}
+.intro-pending .music-dock,.intro-pending .nature-scene{visibility:hidden}
+@keyframes portal-draw{to{stroke-dashoffset:0}}
+@keyframes portal-copy-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-bloom{from{opacity:0}to{opacity:1}}
+@keyframes portal-landscape-arrive{0%{opacity:0;transform:scale(.98)}35%{opacity:.55}80%,100%{opacity:.82;transform:scale(1)}}
+@keyframes portal-make-space{from{transform:translateX(43px)}to{transform:translateX(0)}}
+@keyframes portal-union-light{0%{opacity:0}45%{opacity:1}100%{opacity:.65}}
+@keyframes portal-thread-grow{to{transform:scaleX(1)}}
+@keyframes portal-firefly{0%,100%{opacity:0;transform:translateY(12px)}40%,65%{opacity:.65}85%{transform:translateY(-24px)}}
+@keyframes portal-gate-open{0%,76%{transform:scale(1)}100%{transform:scale(1.16)}}
+@keyframes portal-unveil{0%,80%{opacity:1}100%{opacity:0;visibility:hidden}}
+@media(max-width:600px){.portal-stage{width:88vw}.portal-overline{font-size:8px;margin-bottom:22px;letter-spacing:.19em}.portal-gate{width:58vw;height:72.5vw;max-height:345px;max-width:276px}.portal-names{font-size:32px;margin-top:30px}.portal-monogram-caption{font-size:8px;margin-top:10px}.portal-botanical{width:39%}}
+@media(max-height:620px) and (min-width:601px){.portal-gate{width:220px;height:275px}.portal-overline{margin-bottom:12px}.portal-names{font-size:28px;margin-top:15px}.portal-thread{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){.intro-pending .wedding-portal{display:none}.intro-pending .music-dock{visibility:visible}}
+@media print{.wedding-portal{display:none!important}}

@@ -1,0 +1,129 @@
+/* A narrow botanical margin. Nothing in this layer receives input. */
+.nature-layer {
+  --nature-rail: clamp(20px, 3.5vw, 64px);
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+.nature-layer *,
+.nature-layer *::before,
+.nature-layer *::after {
+  pointer-events: none !important;
+}
+
+.nature-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--nature-rail);
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.nature-rail--left { left: 0; }
+.nature-rail--right { right: 0; }
+
+.nature-flower {
+  --petal-fill: #eee3c9;
+  --petal-stroke: #aa966e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: var(--flower-size, 22px);
+  height: var(--flower-size, 22px);
+  opacity: 0;
+  transform-origin: center;
+}
+
+.nature-flower--sage {
+  --petal-fill: #bec8af;
+  --petal-stroke: #7c8c70;
+}
+
+.nature-flower--gold {
+  --petal-fill: #d6c49c;
+  --petal-stroke: #a78e5f;
+}
+
+.nature-flower svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: var(--petal-fill);
+  stroke: var(--petal-stroke);
+  stroke-width: .65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nature-flower .nature-flower-heart {
+  fill: #ab9362;
+  stroke: none;
+}
+
+.nature-plant {
+  position: absolute;
+  bottom: 18px;
+  left: -2px;
+  width: calc(var(--nature-rail) + 4px);
+  opacity: .19;
+  transform-origin: 18% 100%;
+}
+
+.nature-plant svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: #80916e;
+  stroke: #587153;
+  stroke-width: .75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nature-plant .nature-stem {
+  fill: none;
+  stroke: #647b59;
+  stroke-width: 1;
+}
+
+.nature-rail--right .nature-plant { transform-origin: 82% 100%; }
+.nature-rail--right .nature-plant svg { transform: scaleX(-1); }
+
+.nature-layer.is-moving .nature-flower,
+.nature-layer.is-moving .nature-plant {
+  will-change: transform;
+}
+
+.nature-layer.is-suspended,
+.modal-open .nature-layer,
+body:has(dialog[open]) .nature-layer {
+  opacity: 0;
+}
+
+@media (max-width: 760px) {
+  .nature-layer { --nature-rail: 16px; }
+  .nature-plant {
+    width: 29px;
+    left: -10px;
+    bottom: 58px;
+    opacity: .14;
+  }
+  .nature-rail--right .nature-plant { left: -3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nature-layer { display: none !important; }
+}
+
+@media print {
+  .nature-layer { display: none !important; }
+}
